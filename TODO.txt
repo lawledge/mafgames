@@ -1,0 +1,5 @@
+1. Redux
+2. Redux-Saga 
+
+
+Refresh button w/ redux saga (only changed parts will re-render)
