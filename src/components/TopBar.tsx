@@ -21,14 +21,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// const getFinishedLog = (logId, onsuccess, onerror) => {
-
-//   mafiaApiQuery('action=log&param=log&id=' + encodeURIComponent(logId), onsuccess, onerror);
-
-// }
-
-// getCurrentLogs()
-
 export const TopBar: React.FC = () => {
   const ref = useRef<HTMLButtonElement>(null);
 
@@ -47,7 +39,7 @@ export const TopBar: React.FC = () => {
         <Toolbar>
           {/* флексами лого и кнопку */}
           <Typography variant="h6" className={classes.title}>
-            MAFstats
+            mafia.stats
           </Typography>
           {console.log("check")}
           {/* кнопку */}

@@ -7,32 +7,45 @@ import {
   FormControl,
   InputLabel,
   Select,
-  MenuItem
+  MenuItem,
 } from "@material-ui/core";
-import Brightness3Icon from "@material-ui/icons/Brightness3";
+import { useSelector, useDispatch } from "react-redux";
+// import {} from "../core/"
+// import
+// import Brightness3Icon from "@material-ui/icons/Brightness3";
 // import ExtraButton from "./ExtraButtons";
 // import PlayerContainer from "../containers/PlayerContainer";
 // import Player from "./Player";
 // import { setGame } from "../store/game/actions";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     // display: 'flex',
     // flexWrap: 'wrap',
   },
   formControl: {
     // margin: theme.spacing(1),
-    minWidth: 130
+    minWidth: 130,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }));
 
 export default function Game() {
+  interface RootState {
+    isOn: boolean;
+  }
+  const selectIsOn = (state: RootState) => state.isOn;
+  const isOn = useSelector(selectIsOn);
+
+  const dispatch = useDispatch();
+
+  console.log(isOn);
+  // const counter = useSelector((state) => state.game);
   const classes = useStyles();
 
-  const inputLabel = React.useRef<HTMLInputElement>(null);
+  const inputLabel = React.useRef<HTMLLabelElement>(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
 
   const changeLabelWidth = () => {
@@ -40,7 +53,7 @@ export default function Game() {
   };
 
   const handleChange = () => {
-    console.log("213");
+    console.log("123");
   };
 
   return (
@@ -53,11 +66,11 @@ export default function Game() {
             </InputLabel>
             <Select
               //   value={props.game.id}
-              onChange={handleChange}
+              // onChange={() => dispatch()}
               labelWidth={labelWidth}
               inputProps={{
                 name: "value",
-                id: "outlined-age-simple"
+                id: "outlined-age-simple",
               }}
               onOpen={changeLabelWidth}
             >
