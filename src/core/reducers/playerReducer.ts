@@ -1,4 +1,4 @@
-import { STATS_COMPARE } from "../actionTypes/playerActionTypes";
+import { CHECK_PLAYER_STATS } from "../actionTypes/playerActionTypes";
 
 interface Iaction {
   type: string;
@@ -9,9 +9,9 @@ const defaultState = {
   stats: [],
 };
 
-export const statsReducer = (state = defaultState, action: Iaction) => {
+export const playerReducer = (state = defaultState, action: Iaction) => {
   switch (action.type) {
-    case STATS_COMPARE:
+    case CHECK_PLAYER_STATS:
       return {
         ...state,
         games: action.payload,

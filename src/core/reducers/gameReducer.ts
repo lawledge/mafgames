@@ -1,4 +1,4 @@
-import { CHANGE_CURRENT_GAME } from "../actionTypes/gameActionTypes";
+import { SET_CURRENT_GAME } from "../actionTypes/gameActionTypes";
 
 interface Iaction {
   type: string;
@@ -12,9 +12,9 @@ const defaultState = {
 };
 
 export const gameReducer = (state = defaultState, action: Iaction) => {
-  // console.log(state);
+  console.log(state);
   switch (action.type) {
-    case CHANGE_CURRENT_GAME:
+    case SET_CURRENT_GAME:
       return {
         ...state,
         game: action.payload,

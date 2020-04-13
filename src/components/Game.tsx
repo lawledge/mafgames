@@ -18,6 +18,14 @@ import { useSelector, useDispatch } from "react-redux";
 // import Player from "./Player";
 // import { setGame } from "../store/game/actions";
 
+interface Props {
+  selectIsChanged: () => void;
+}
+
+interface RootState {
+  isOn: boolean;
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     // display: 'flex',
@@ -32,10 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Game() {
-  interface RootState {
-    isOn: boolean;
-  }
+export const Game: React.FC<Props> = (props) => {
   const selectIsOn = (state: RootState) => state.isOn;
   const isOn = useSelector(selectIsOn);
 
@@ -66,7 +71,8 @@ export default function Game() {
             </InputLabel>
             <Select
               //   value={props.game.id}
-              // onChange={() => dispatch()}
+              // onChange={() => }
+              onChange={props.selectIsChanged}
               labelWidth={labelWidth}
               inputProps={{
                 name: "value",
@@ -75,7 +81,7 @@ export default function Game() {
               onOpen={changeLabelWidth}
             >
               <MenuItem value="none">
-                <em>Нет партий</em>
+                <em>Нет игр</em>
               </MenuItem>
             </Select>
           </FormControl>
@@ -88,4 +94,4 @@ export default function Game() {
       {/* <PlayerContainer game={props.game} /> */}
     </Box>
   );
-}
+};

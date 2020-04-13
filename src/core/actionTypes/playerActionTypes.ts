@@ -1,1 +1,1 @@
-export const STATS_COMPARE = "STATS_COMPARE";
+export const CHECK_PLAYER_STATS = "CHECK PLAYER STATS";

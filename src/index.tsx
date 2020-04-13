@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { render } from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
-import configureStore from "./core/config/configureStore";
+import configureStore from "./core/configureStore/configureStore";
 
 const store = configureStore();
 const rootElement = document.getElementById("root");
