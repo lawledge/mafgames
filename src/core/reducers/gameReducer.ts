@@ -1,4 +1,7 @@
-import { SET_CURRENT_GAME } from "../actionTypes/gameActionTypes";
+import {
+  SET_CURRENT_GAME,
+  LOAD_LIST_OF_GAMES,
+} from "../actionTypes/gameActionTypes";
 
 interface Iaction {
   type: string;
@@ -19,8 +22,12 @@ export const gameReducer = (state = defaultState, action: Iaction) => {
         ...state,
         game: action.payload,
       };
+    case LOAD_LIST_OF_GAMES:
+      return {
+        ...state,
+        game: "123",
+      };
   }
-
   return state;
 };
 

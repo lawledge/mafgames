@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
-import useCallback, { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Game } from "../components/Game";
-// import action
-import { setGame } from "../core/actionCreators/gameActionCreators";
+import { loadGames } from "../core/actionCreators/gameActionCreators";
 
 interface RootState {
   game: object;
@@ -24,13 +23,22 @@ export const GameContainer: React.FC = () => {
   const dispatch = useDispatch();
 
   const selectIsChanged = () => {
-    dispatch(setGame());
-    console.log("1337");
+    dispatch(loadGames());
+    // console.log("1337");
   };
   const gameList = useSelector(checkDefaultState);
+
+  useEffect(() => {
+    // showCurrentSumrakGame();
+    // отсюда должен триггериться экшен, дальше идти в сагу и после в стор,
+    // и печататься из стора в дочке (пропсы прокинуть через useSelector)
+    // action триггерится
+    dispatch(loadGames());
+    // console.log("refreshed");
+  }, []);
+
   return (
     <>
-      {console.log(gameList.game)}
       <Game selectIsChanged={selectIsChanged} />
     </>
   );

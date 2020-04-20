@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import {
@@ -57,9 +57,14 @@ export const Game: React.FC<Props> = (props) => {
     setLabelWidth(inputLabel.current!.offsetWidth);
   };
 
-  const handleChange = () => {
-    console.log("123");
-  };
+  // const handleChange = () => {
+  //   console.log("123");
+  // };
+
+  // useEffect(() => {
+  //   props.selectIsChanged();
+  //   console.log("refreshed");
+  // }, []);
 
   return (
     <Box m={2}>

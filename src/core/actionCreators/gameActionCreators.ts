@@ -1,4 +1,4 @@
-import { SET_CURRENT_GAME } from "../actionTypes/gameActionTypes";
+import * as actions from "../actionTypes/gameActionTypes";
 
 // interface Igame {
 //   game: {
@@ -21,6 +21,10 @@ interface ISetGame {
 }
 
 export const setGame = (): ISetGame => ({
-  type: SET_CURRENT_GAME,
+  type: actions.SET_CURRENT_GAME,
   // payload: game,
+});
+
+export const loadGames = () => ({
+  type: actions.LOAD_LIST_OF_GAMES,
 });
