@@ -1,6 +1,7 @@
 import {
   SET_CURRENT_GAME,
-  LOAD_LIST_OF_GAMES,
+  LOAD_GAME_LIST,
+  PUT_GAME_LIST,
 } from "../actionTypes/gameActionTypes";
 
 interface Iaction {
@@ -9,24 +10,29 @@ interface Iaction {
 }
 
 const defaultState = {
-  game: {
-    id: [],
+  games: {
+    id: "0",
   },
 };
 
 export const gameReducer = (state = defaultState, action: Iaction) => {
-  console.log(state);
+  // console.log(state);
   switch (action.type) {
-    case SET_CURRENT_GAME:
+    // case SET_CURRENT_GAME:
+    //   return {
+    //     ...state,
+    //     game: action.payload,
+    //   };
+    case PUT_GAME_LIST:
       return {
         ...state,
-        game: action.payload,
+        games: action.payload,
       };
-    case LOAD_LIST_OF_GAMES:
-      return {
-        ...state,
-        game: "123",
-      };
+    // case LOAD_GAME_LIST:
+    //   return {
+    //     ...state,
+    //     game: "123",
+    //   };
   }
   return state;
 };

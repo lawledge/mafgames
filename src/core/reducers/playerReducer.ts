@@ -13,8 +13,8 @@ export const playerReducer = (state = defaultState, action: Iaction) => {
   switch (action.type) {
     case CHECK_PLAYER_STATS:
       return {
-        ...state,
-        games: action.payload,
+        // ...state,
+        // games: action.payload,
       };
   }
 

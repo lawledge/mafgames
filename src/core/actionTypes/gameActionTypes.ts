@@ -1,3 +1,4 @@
 export const SET_CURRENT_GAME = "SET_CURRENT_GAME";
-export const LOAD_LIST_OF_GAMES = "LOAD_LIST_OF_GAMES";
+export const PUT_GAME_LIST = "PUT_GAME_LIST";
+export const LOAD_GAME_LIST = "LOAD_GAME_LIST";
 // export const STATS_COMPARE = "STATS_COMPARE";

@@ -1,19 +1,23 @@
 import * as actions from "../actionTypes/gameActionTypes";
 
-// interface Igame {
-//   game: {
-//     id: number;
-//   };
-//   // etc
-// }
+export interface gameResponse {
+  r: string;
+  games: Game;
+}
 
-// type Game = {
-//   id: number;
-// };
+export interface Game {
+  id: number;
+  start: Date;
+  ul: string;
+  vip: boolean;
+  player_count: number;
+  constructor: boolean;
+  users: UserId[];
+}
 
-// interface GameInterface {
-//   game?: Game;
-// }
+export interface UserId {
+  [key: number]: string;
+}
 
 interface ISetGame {
   type: string;
@@ -26,5 +30,10 @@ export const setGame = (): ISetGame => ({
 });
 
 export const loadGames = () => ({
-  type: actions.LOAD_LIST_OF_GAMES,
+  type: actions.LOAD_GAME_LIST,
+});
+
+export const putGames = (gamesFromServer: Game) => ({
+  type: actions.PUT_GAME_LIST,
+  payload: gamesFromServer,
 });

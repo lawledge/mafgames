@@ -5,20 +5,20 @@ import {
   Toolbar,
   Typography,
   TextField,
-  Fab
+  Fab,
 } from "@material-ui/core/";
 import Replay from "@material-ui/icons/Replay";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 }));
 
 export const TopBar: React.FC = () => {
@@ -29,7 +29,7 @@ export const TopBar: React.FC = () => {
   const [button, setButton] = useState(false);
 
   const buttonPressHandler = () => {
-    setButton(prevState => !prevState);
+    setButton((prevState) => !prevState);
     console.log(button);
   };
 

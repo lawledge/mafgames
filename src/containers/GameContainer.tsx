@@ -5,6 +5,7 @@ import { loadGames } from "../core/actionCreators/gameActionCreators";
 
 interface RootState {
   game: object;
+  player: object;
 }
 
 const checkDefaultState = (state: RootState) => state;
@@ -26,8 +27,7 @@ export const GameContainer: React.FC = () => {
     dispatch(loadGames());
     // console.log("1337");
   };
-  const gameList = useSelector(checkDefaultState);
-
+  const loadedGameList = useSelector(checkDefaultState);
   useEffect(() => {
     // showCurrentSumrakGame();
     // отсюда должен триггериться экшен, дальше идти в сагу и после в стор,
@@ -39,6 +39,7 @@ export const GameContainer: React.FC = () => {
 
   return (
     <>
+      {console.log(loadedGameList)}
       <Game selectIsChanged={selectIsChanged} />
     </>
   );
