@@ -2,9 +2,10 @@ import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Game } from "./Game";
 import { loadGames } from "./gameActionCreators";
+import { GameResponse } from "./gameInterfaces";
 
 interface RootState {
-  game: object;
+  game: GameResponse;
   player: object;
 }
 
@@ -27,20 +28,18 @@ export const GameContainer: React.FC = () => {
     dispatch(loadGames());
     // console.log("1337");
   };
-  const loadedGameList = useSelector(checkDefaultState);
+  const state = useSelector(checkDefaultState);
   useEffect(() => {
     // showCurrentSumrakGame();
     // отсюда должен триггериться экшен, дальше идти в сагу и после в стор,
     // и печататься из стора в дочке (пропсы прокинуть через useSelector)
     // action триггерится
     dispatch(loadGames());
-    // console.log("refreshed");
   }, []);
 
   return (
     <>
-      {console.log(loadedGameList)}
-      <Game selectIsChanged={selectIsChanged} />
+      <Game selectIsChanged={selectIsChanged} loadedGameList={state.game} />
     </>
   );
 };

@@ -10,9 +10,11 @@ interface Iaction {
 }
 
 const defaultState = {
-  games: {
-    id: "0",
-  },
+  games: [
+    {
+      id: "0",
+    },
+  ],
 };
 
 export const gameReducer = (state = defaultState, action: Iaction) => {

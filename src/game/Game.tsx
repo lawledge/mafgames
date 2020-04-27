@@ -10,6 +10,8 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
+import { GameResponse } from "./gameInterfaces";
+
 // import {} from "../core/"
 // import
 // import Brightness3Icon from "@material-ui/icons/Brightness3";
@@ -20,6 +22,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 interface Props {
   selectIsChanged: () => void;
+  loadedGameList: GameResponse;
 }
 
 interface RootState {
@@ -57,19 +60,11 @@ export const Game: React.FC<Props> = (props) => {
     setLabelWidth(inputLabel.current!.offsetWidth);
   };
 
-  // const handleChange = () => {
-  //   console.log("123");
-  // };
-
-  // useEffect(() => {
-  //   props.selectIsChanged();
-  //   console.log("refreshed");
-  // }, []);
-
   return (
     <Box m={2}>
       <Grid container>
         <Grid item xs={6}>
+          {console.log(props.loadedGameList)}
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
               Логи
@@ -85,9 +80,20 @@ export const Game: React.FC<Props> = (props) => {
               }}
               onOpen={changeLabelWidth}
             >
-              <MenuItem value="none">
-                <em>Нет игр</em>
-              </MenuItem>
+              {/* {console.log(typeof props.loadedGameList.games)} */}
+              {console.log(props.loadedGameList.games[0])}
+              {props.loadedGameList.games.length === 0 ||
+              props.loadedGameList.games.length === null ? (
+                <MenuItem value="none">
+                  <em>Нет игр</em>
+                </MenuItem>
+              ) : (
+                props.loadedGameList.games.map(({ id }) => (
+                  <MenuItem key={id} value={id}>
+                    {id}
+                  </MenuItem>
+                ))
+              )}
             </Select>
           </FormControl>
         </Grid>
