@@ -1,4 +1,4 @@
-import { CHECK_PLAYER_STATS } from "../actionTypes/playerActionTypes";
+import { CHECK_PLAYER_STATS } from "./playerActionTypes";
 
 interface Iaction {
   type: string;

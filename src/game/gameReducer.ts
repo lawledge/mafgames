@@ -2,7 +2,7 @@ import {
   SET_CURRENT_GAME,
   LOAD_GAME_LIST,
   PUT_GAME_LIST,
-} from "../actionTypes/gameActionTypes";
+} from "./gameActionTypes";
 
 interface Iaction {
   type: string;

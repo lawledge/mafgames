@@ -1,7 +1,7 @@
-import * as actions from "../actionTypes/gameActionTypes";
+import * as actions from "./gameActionTypes";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { fetchGames } from "../api/gameApi";
-import { putGames } from "../actionCreators/gameActionCreators";
+import { fetchGames } from "./gameApi";
+import { putGames } from "./gameActionCreators";
 
 export interface gameResponse {
   r: string;

@@ -1,4 +1,4 @@
-import * as actions from "../actionTypes/gameActionTypes";
+import * as actions from "./gameActionTypes";
 
 export interface gameResponse {
   r: string;

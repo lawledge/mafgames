@@ -1,6 +1,6 @@
 import React from "react";
-import { TopBar } from "./TopBar";
-import { GameContainer } from "../containers/GameContainer";
+import { TopBar } from "../ui/TopBar";
+import { GameContainer } from "../game/GameContainer";
 
 const App: React.FC = () => {
   return (

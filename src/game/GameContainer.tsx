@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Game } from "../components/Game";
-import { loadGames } from "../core/actionCreators/gameActionCreators";
+import { Game } from "./Game";
+import { loadGames } from "./gameActionCreators";
 
 interface RootState {
   game: object;
