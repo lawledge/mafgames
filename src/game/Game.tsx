@@ -10,7 +10,14 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { GameResponse } from "./gameInterfaces";
+import { GameResponse } from "./gameInterface";
+import { PlayerContainer } from "../player/PlayerContainer";
+import { setGame } from "./gameActionCreator";
+
+interface RootState {
+  game: GameResponse;
+  player: object;
+}
 
 // import {} from "../core/"
 // import
@@ -23,10 +30,6 @@ import { GameResponse } from "./gameInterfaces";
 interface Props {
   selectIsChanged: () => void;
   loadedGameList: GameResponse;
-}
-
-interface RootState {
-  isOn: boolean;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -44,12 +47,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Game: React.FC<Props> = (props) => {
-  const selectIsOn = (state: RootState) => state.isOn;
-  const isOn = useSelector(selectIsOn);
+  const checkState = (state: RootState) => state;
+  const state = useSelector(checkState);
 
   const dispatch = useDispatch();
 
-  console.log(isOn);
+  console.log(state);
   // const counter = useSelector((state) => state.game);
   const classes = useStyles();
 
@@ -60,19 +63,29 @@ export const Game: React.FC<Props> = (props) => {
     setLabelWidth(inputLabel.current!.offsetWidth);
   };
 
+  const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    if (e.target.value != "none") {
+      const clickedGame = state.game.games.filter(
+        ({ id }) => id === e.target.value
+      );
+      // setCurrentGame
+      dispatch(setGame(clickedGame[0]));
+      console.log(clickedGame[0]);
+    }
+  };
+
   return (
     <Box m={2}>
       <Grid container>
         <Grid item xs={6}>
-          {console.log(props.loadedGameList)}
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
               Логи
             </InputLabel>
             <Select
               //   value={props.game.id}
-              // onChange={() => }
-              onChange={props.selectIsChanged}
+              onChange={handleChange}
+              // onChange={props.selectIsChanged}
               labelWidth={labelWidth}
               inputProps={{
                 name: "value",
@@ -81,7 +94,7 @@ export const Game: React.FC<Props> = (props) => {
               onOpen={changeLabelWidth}
             >
               {/* {console.log(typeof props.loadedGameList.games)} */}
-              {console.log(props.loadedGameList.games[0])}
+
               {props.loadedGameList.games.length === 0 ||
               props.loadedGameList.games.length === null ? (
                 <MenuItem value="none">
@@ -97,12 +110,11 @@ export const Game: React.FC<Props> = (props) => {
             </Select>
           </FormControl>
         </Grid>
-
-        <Grid item xs={6}>
-          {/* <ExtraButton /> */}
-        </Grid>
       </Grid>
-      {/* <PlayerContainer game={props.game} /> */}
+      <Grid item xs={12}>
+        {/* <ExtraButton /> */}
+        <PlayerContainer />
+      </Grid>
     </Box>
   );
 };

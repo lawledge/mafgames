@@ -1,14 +1,9 @@
-import { GameFromServer } from "./gameInterfaces";
+import { GameFromServer } from "./gameInterface";
 import * as actions from "./gameActionTypes";
 
-interface ISetGame {
-  type: string;
-  // payload?: GameInterface;
-}
-
-export const setGame = (): ISetGame => ({
+export const setGame = (currentGame: GameFromServer) => ({
   type: actions.SET_CURRENT_GAME,
-  // payload: game,
+  payload: currentGame,
 });
 
 export const loadGames = () => ({

@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Game } from "./Game";
-import { loadGames } from "./gameActionCreators";
-import { GameResponse } from "./gameInterfaces";
+import { loadGames } from "./gameActionCreator";
+import { GameResponse } from "./gameInterface";
 
 interface RootState {
   game: GameResponse;
@@ -25,7 +25,9 @@ export const GameContainer: React.FC = () => {
   const dispatch = useDispatch();
 
   const selectIsChanged = () => {
-    dispatch(loadGames());
+    // console.log(id)
+    // dispatch loadPlayers
+    // dispatch(loadGames());
     // console.log("1337");
   };
   const state = useSelector(checkDefaultState);
@@ -34,6 +36,7 @@ export const GameContainer: React.FC = () => {
     // отсюда должен триггериться экшен, дальше идти в сагу и после в стор,
     // и печататься из стора в дочке (пропсы прокинуть через useSelector)
     // action триггерится
+    console.log(state);
     dispatch(loadGames());
   }, []);
 

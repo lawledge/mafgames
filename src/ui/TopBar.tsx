@@ -8,6 +8,8 @@ import {
   Fab,
 } from "@material-ui/core/";
 import Replay from "@material-ui/icons/Replay";
+import { useDispatch } from "react-redux";
+import { loadGames } from "../game/gameActionCreator";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,13 +27,7 @@ export const TopBar: React.FC = () => {
   const ref = useRef<HTMLButtonElement>(null);
 
   const classes = useStyles();
-
-  const [button, setButton] = useState(false);
-
-  const buttonPressHandler = () => {
-    setButton((prevState) => !prevState);
-    console.log(button);
-  };
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -41,10 +37,9 @@ export const TopBar: React.FC = () => {
           <Typography variant="h6" className={classes.title}>
             mafia.stats
           </Typography>
-          {console.log("check")}
-          {/* кнопку */}
+
           <Fab
-            onClick={buttonPressHandler}
+            onClick={() => dispatch(loadGames())}
             size="small"
             color="primary"
             aria-label="reload"
