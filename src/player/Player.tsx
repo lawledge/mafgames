@@ -26,40 +26,25 @@ export const Player: React.FC<Props> = (props) => {
 
   return (
     <List className={classes.root}>
-      {/* {Object.keys(props.currentGame.users).map((id) =>
-        // <p> props.currentGame.users[key] </p>
-        console.log(id)
-      )} */}
-      <ListItem>
-        {props.currentGame.users.map((userMapping) =>
-          Object.keys(userMapping).map((id) => userMapping[id])
-        )}
-        <ListItemAvatar>
-          <Avatar>
-            <PersonIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="{}" secondary="ID:123" />
-      </ListItem>
-      }
-      <Divider variant="inset" component="li" />
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <PersonIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Username" secondary="ID:123" />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <PersonIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Username" secondary="ID:123" />
-      </ListItem>
+      {props.currentGame.users.map((userMapping: any) =>
+        Object.keys(userMapping).map((id) => (
+          <>
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar>
+                  <PersonIcon />
+                </Avatar>
+              </ListItemAvatar>
+              {console.log(userMapping)}
+              <ListItemText
+                primary={userMapping[id]}
+                secondary={"id:" + (id == "-1" ? "скрыт" : id)}
+              />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+          </>
+        ))
+      )}
     </List>
   );
 };

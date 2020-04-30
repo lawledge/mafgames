@@ -18,7 +18,8 @@ export interface GameFromServer {
 }
 
 export interface UserId {
-  map(arg0: (userMapping: any) => void[]): import("react").ReactNode;
+  [x: string]: any;
+  // map(arg0: (userMapping: any) => void[]): import("react").ReactNode;
   [id: number]: string;
 }
 
