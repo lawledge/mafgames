@@ -10,6 +10,7 @@ import {
 import Replay from "@material-ui/icons/Replay";
 import { useDispatch } from "react-redux";
 import { loadGames } from "../game/gameActionCreator";
+import { Footer } from "./BottomNav";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,8 +36,10 @@ export const TopBar: React.FC = () => {
         <Toolbar>
           {/* флексами лого и кнопку */}
           <Typography variant="h6" className={classes.title}>
-            mafia.stats
+            mafgames
           </Typography>
+
+          <Footer />
 
           <Fab
             onClick={() => dispatch(loadGames())}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import {
@@ -8,28 +8,24 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Fab,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { GameResponse } from "./gameInterface";
 import { PlayerContainer } from "../player/PlayerContainer";
 import { setGame } from "./gameActionCreator";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import Replay from "@material-ui/icons/Replay";
 
 interface RootState {
   game: GameResponse;
   player: object;
 }
 
-// import {} from "../core/"
-// import
-// import Brightness3Icon from "@material-ui/icons/Brightness3";
-// import ExtraButton from "./ExtraButtons";
-// import PlayerContainer from "../containers/PlayerContainer";
-// import Player from "./Player";
-// import { setGame } from "../store/game/actions";
-
 interface Props {
   selectIsChanged: () => void;
   loadedGameList: GameResponse;
+  currentIsSet: number;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -44,12 +40,15 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  fab: {
+    margin: "0 10px 0",
+  },
 }));
 
 export const Game: React.FC<Props> = (props) => {
   const checkState = (state: RootState) => state;
+  // прокинуть через пропсы
   const state = useSelector(checkState);
-
   const dispatch = useDispatch();
 
   console.log(state);
@@ -76,11 +75,32 @@ export const Game: React.FC<Props> = (props) => {
 
   return (
     <Box m={2}>
-      <Grid container>
+      <Grid
+        container
+        style={{ alignItems: "center", justifyContent: "center" }}
+      >
+        {props.currentIsSet != 0 ? (
+          <Fab
+            onClick={() => console.log("2")}
+            size="small"
+            color="primary"
+            aria-label="favorites"
+            className={classes.fab}
+          >
+            <FavoriteIcon />
+          </Fab>
+        ) : (
+          ""
+        )}
+
         <Grid item xs={6}>
-          <FormControl variant="outlined" className={classes.formControl}>
+          <FormControl
+            fullWidth
+            variant="outlined"
+            className={classes.formControl}
+          >
             <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
-              Логи
+              Choose game!
             </InputLabel>
             <Select
               //   value={props.game.id}
@@ -92,6 +112,7 @@ export const Game: React.FC<Props> = (props) => {
                 id: "outlined-age-simple",
               }}
               onOpen={changeLabelWidth}
+              style={{ display: "flex" }}
             >
               {/* {console.log(typeof props.loadedGameList.games)} */}
 
@@ -108,8 +129,19 @@ export const Game: React.FC<Props> = (props) => {
                 ))
               )}
             </Select>
+
+            {/* флексами лого и кнопку */}
           </FormControl>
         </Grid>
+        <Fab
+          onClick={() => console.log("2")}
+          size="small"
+          color="primary"
+          aria-label="reload"
+          className={classes.fab}
+        >
+          <Replay />
+        </Fab>
       </Grid>
       <Grid item xs={12}>
         {/* <ExtraButton /> */}

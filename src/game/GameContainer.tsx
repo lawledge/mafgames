@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Game } from "./Game";
 import { loadGames } from "./gameActionCreator";
 import { GameResponse } from "./gameInterface";
-
+import { CurrentGame } from "./gameInterface";
 interface RootState {
   game: GameResponse;
   player: object;
+  curGame: CurrentGame;
 }
 
 const checkDefaultState = (state: RootState) => state;
@@ -24,25 +25,22 @@ const checkDefaultState = (state: RootState) => state;
 export const GameContainer: React.FC = () => {
   const dispatch = useDispatch();
 
-  const selectIsChanged = () => {
-    // console.log(id)
-    // dispatch loadPlayers
-    // dispatch(loadGames());
-    // console.log("1337");
-  };
+  const selectIsChanged = () => {};
   const state = useSelector(checkDefaultState);
   useEffect(() => {
-    // showCurrentSumrakGame();
-    // отсюда должен триггериться экшен, дальше идти в сагу и после в стор,
-    // и печататься из стора в дочке (пропсы прокинуть через useSelector)
-    // action триггерится
     console.log(state);
     dispatch(loadGames());
   }, []);
 
   return (
     <>
-      <Game selectIsChanged={selectIsChanged} loadedGameList={state.game} />
+      <Game
+        selectIsChanged={selectIsChanged}
+        loadedGameList={state.game}
+        currentIsSet={
+          state.curGame.currentGame.id != 0 ? state.curGame.currentGame.id : 0
+        }
+      />
     </>
   );
 };

@@ -1,14 +1,20 @@
 import React from "react";
-import { TopBar } from "../ui/TopBar";
-import { GameContainer } from "../game/GameContainer";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { About } from "../router/About";
+import { Main } from "../router/Main";
 import { Footer } from "../ui/BottomNav";
+import { TopBar } from "../ui/TopBar";
 
 const App: React.FC = () => {
   return (
     <>
-      <TopBar />
-      <GameContainer />
-      <Footer />
+      <Router>
+        <TopBar />
+        <Switch>
+          <Route path="/" exact component={Main} />
+          <Route path="/about" component={About} />
+        </Switch>
+      </Router>
     </>
   );
 };
