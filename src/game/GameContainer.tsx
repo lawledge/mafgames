@@ -4,6 +4,7 @@ import { Game } from "./Game";
 import { loadGames } from "./gameActionCreator";
 import { GameResponse } from "./gameInterface";
 import { CurrentGame } from "./gameInterface";
+
 interface RootState {
   game: GameResponse;
   player: object;
@@ -15,12 +16,6 @@ const checkDefaultState = (state: RootState) => state;
 // const handler = useCallback(() => {
 //   dispatch(setGame());
 // }, []);
-
-// import axios from "axios";
-// конфликт из-за отсутствия провайдера
-// import { connect } from "react-redux";
-// import { setGame } from "../store/game/actions";
-// сюда надо импортнуть ф-ю из PlayerContainer, которую повесить потом на OnChange
 
 export const GameContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -38,7 +33,9 @@ export const GameContainer: React.FC = () => {
         selectIsChanged={selectIsChanged}
         loadedGameList={state.game}
         currentIsSet={
-          state.curGame.currentGame.id != 0 ? state.curGame.currentGame.id : 0
+          state.curGame.currentGame.start
+            ? state.curGame.currentGame
+            : undefined
         }
       />
     </>

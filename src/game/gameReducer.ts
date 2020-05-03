@@ -4,9 +4,11 @@ import {
   PUT_GAME_LIST,
 } from "./gameActionTypes";
 
+import { GameFromServer } from "./gameInterface";
+
 interface Action {
   type: string;
-  payload: string;
+  payload?: GameFromServer;
 }
 
 const defaultGameReducerState = {
@@ -17,7 +19,7 @@ const defaultGameReducerState = {
   ],
 };
 
-const defaultCurrentGameReducerState = {
+export const defaultCurrentGameReducerState = {
   currentGame: {
     id: 0,
     users: [{ 100000: "0" }],

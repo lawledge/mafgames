@@ -11,7 +11,7 @@ import {
   Fab,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { GameResponse } from "./gameInterface";
+import { GameResponse, CurrentGame, GameFromServer } from "./gameInterface";
 import { PlayerContainer } from "../player/PlayerContainer";
 import { setGame } from "./gameActionCreator";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -22,23 +22,27 @@ interface RootState {
   player: object;
 }
 
+// interface CurrentIsSet {
+//   currentIsSet
+// }
+
 interface Props {
   selectIsChanged: () => void;
   loadedGameList: GameResponse;
-  currentIsSet: number;
+  currentIsSet?: GameFromServer;
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    // display: 'flex',
-    // flexWrap: 'wrap',
-  },
   formControl: {
     // margin: theme.spacing(1),
     minWidth: 130,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
   },
   fab: {
     margin: "0 10px 0",
@@ -73,15 +77,27 @@ export const Game: React.FC<Props> = (props) => {
     }
   };
 
+  const useLocalState = (localItem: string) => {
+    const [local, setState] = useState(localStorage.getItem(localItem));
+    const setLoc = (newItem: string) => {
+      localStorage.setItem(localItem, newItem);
+      setState(newItem);
+    };
+    return [local, setLoc] as const;
+  };
+
+  // go id
+
+  const [fav, setFav] = useLocalState(
+    props.currentIsSet ? props.currentIsSet.id.toString() : "undefined"
+  );
   return (
     <Box m={2}>
-      <Grid
-        container
-        style={{ alignItems: "center", justifyContent: "center" }}
-      >
-        {props.currentIsSet != 0 ? (
+      <Grid container className={classes.container}>
+        {props.currentIsSet ? (
+          // go all game info
           <Fab
-            onClick={() => console.log("2")}
+            onClick={() => setFav(JSON.stringify(props.currentIsSet))}
             size="small"
             color="primary"
             aria-label="favorites"
@@ -112,7 +128,6 @@ export const Game: React.FC<Props> = (props) => {
                 id: "outlined-age-simple",
               }}
               onOpen={changeLabelWidth}
-              style={{ display: "flex" }}
             >
               {/* {console.log(typeof props.loadedGameList.games)} */}
 

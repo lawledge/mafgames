@@ -2,19 +2,22 @@ import { CHECK_PLAYER_STATS } from "./playerActionType";
 
 interface Action {
   type: string;
-  payload: string;
+  // payload: string;
 }
 
 const defaultState = {
-  stats: [],
+  players: [
+    {
+      id: 0,
+    },
+  ],
 };
 
 export const playerReducer = (state = defaultState, action: Action) => {
   switch (action.type) {
     case CHECK_PLAYER_STATS:
       return {
-        // ...state,
-        // games: action.payload,
+        ...state,
       };
   }
 
