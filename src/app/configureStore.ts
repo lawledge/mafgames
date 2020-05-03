@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { persistStore } from "redux-persist";
 
-import { rootReducer } from "./rootReducer";
+import { persistedReducer } from "./rootReducer";
 import rootSaga from "./rootSaga";
 
 declare global {
@@ -17,15 +17,18 @@ const composeEnhancer =
   compose;
 
 const sagaMiddleware = createSagaMiddleware();
-// add
-export const configureStore = () => {
-  const store = createStore(
-    rootReducer,
-    {},
-    composeEnhancer(applyMiddleware(sagaMiddleware))
-  );
+
+const store = createStore(
+  persistedReducer,
+  {},
+  composeEnhancer(applyMiddleware(sagaMiddleware))
+);
+
+const persistor = persistStore(store);
+
+const configureStore = () => {
   sagaMiddleware.run(rootSaga);
   return store;
 };
 
-export default configureStore;
+export { configureStore, persistor };
