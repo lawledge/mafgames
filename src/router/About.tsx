@@ -1,6 +1,5 @@
 import React from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
-import { GameFromServer } from "../game/gameInterface";
 import { Paper, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>

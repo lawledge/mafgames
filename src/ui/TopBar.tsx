@@ -1,12 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  TextField,
-  Fab,
-} from "@material-ui/core/";
+import { AppBar, Toolbar, Typography, Fab } from "@material-ui/core/";
 import Replay from "@material-ui/icons/Replay";
 import { useDispatch } from "react-redux";
 import { loadGames } from "../game/gameActionCreator";
@@ -25,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const TopBar: React.FC = () => {
-  const ref = useRef<HTMLButtonElement>(null);
+  // const ref = useRef<HTMLButtonElement>(null);
 
   const classes = useStyles();
   const dispatch = useDispatch();

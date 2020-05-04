@@ -1,7 +1,7 @@
 import {
   SET_CURRENT_GAME,
-  LOAD_GAME_LIST,
   PUT_GAME_LIST,
+  SET_FAVORITE_GAME,
 } from "./gameActionTypes";
 
 import { GameFromServer } from "./gameInterface";
@@ -24,6 +24,15 @@ export const defaultCurrentGameReducerState = {
     id: 0,
     users: [{ 100000: "0" }],
   },
+};
+
+const defaultFavState = {
+  favorite: [
+    {
+      id: 0,
+      start: 0,
+    },
+  ],
 };
 
 export const gameReducer = (
@@ -56,6 +65,17 @@ export const currentGameReducer = (
       return {
         ...state,
         currentGame: action.payload,
+      };
+  }
+  return state;
+};
+
+export const setFavGameReducer = (state = defaultFavState, action: Action) => {
+  switch (action.type) {
+    case SET_FAVORITE_GAME:
+      return {
+        ...state,
+        favorite: [...state.favorite, action.payload],
       };
   }
   return state;

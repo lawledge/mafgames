@@ -10,6 +10,11 @@ export const loadGames = () => ({
   type: actions.LOAD_GAME_LIST,
 });
 
+export const setFav = (favGame: any) => ({
+  type: actions.SET_FAVORITE_GAME,
+  payload: favGame,
+});
+
 export const putGames = (gamesFromServer: GameFromServer) => ({
   type: actions.PUT_GAME_LIST,
   payload: gamesFromServer,

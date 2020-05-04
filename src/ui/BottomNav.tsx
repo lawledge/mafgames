@@ -38,7 +38,6 @@ export const Footer = () => {
         />
       </Link>
       <Link to="/favorites">
-        {" "}
         <BottomNavigationAction
           className={classes.action}
           label="Favorites"
@@ -46,7 +45,6 @@ export const Footer = () => {
         />
       </Link>
       <Link to="/about">
-        {" "}
         <BottomNavigationAction
           className={classes.action}
           label="About"

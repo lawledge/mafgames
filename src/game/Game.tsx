@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Box,
   Grid,
@@ -11,9 +10,9 @@ import {
   Fab,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { GameResponse, CurrentGame, GameFromServer } from "./gameInterface";
+import { GameResponse, GameFromServer } from "./gameInterface";
 import { PlayerContainer } from "../player/PlayerContainer";
-import { setGame } from "./gameActionCreator";
+import { setGame, setFav } from "./gameActionCreator";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Replay from "@material-ui/icons/Replay";
 
@@ -67,7 +66,7 @@ export const Game: React.FC<Props> = (props) => {
   };
 
   const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
-    if (e.target.value != "none") {
+    if (e.target.value !== "none") {
       const clickedGame = state.game.games.filter(
         ({ id }) => id === e.target.value
       );
@@ -77,27 +76,29 @@ export const Game: React.FC<Props> = (props) => {
     }
   };
 
-  const useLocalState = (localItem: string) => {
-    const [local, setState] = useState(localStorage.getItem(localItem));
-    const setLoc = (newItem: string) => {
-      localStorage.setItem(localItem, newItem);
-      setState(newItem);
-    };
-    return [local, setLoc] as const;
-  };
+  // const useLocalState = (localItem: string) => {
+  //   const [local, setState] = useState(localStorage.getItem(localItem));
+  //   const setLoc = (newItem: string) => {
+  //     localStorage.setItem(localItem, newItem);
+  //     setState(newItem);
+  //   };
+  //   return [local, setLoc] as const;
+  // };
 
   // go id
 
-  const [fav, setFav] = useLocalState(
-    props.currentIsSet ? props.currentIsSet.id.toString() : "undefined"
-  );
+  // const [fav, setFav] = useLocalState(
+  //   props.currentIsSet ? props.currentIsSet.id.toString() : "undefined"
+  // );
   return (
     <Box m={2}>
       <Grid container className={classes.container}>
+        {console.log(props.currentIsSet)}
         {props.currentIsSet ? (
           // go all game info
+
           <Fab
-            onClick={() => setFav(JSON.stringify(props.currentIsSet))}
+            onClick={() => dispatch(setFav(props.currentIsSet))}
             size="small"
             color="primary"
             aria-label="favorites"

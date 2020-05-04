@@ -8,7 +8,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 import PersonIcon from "@material-ui/icons/Person";
 import { GameFromServer } from "../game/gameInterface";
-import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +33,7 @@ export const Player: React.FC<Props> = (props) => {
       <List>
         {props.currentGame.users.map((userMapping: any) =>
           Object.keys(userMapping).map((id) => (
-            <>
+            <div key={id}>
               <ListItem>
                 <ListItemAvatar>
                   <Avatar>
@@ -48,7 +47,7 @@ export const Player: React.FC<Props> = (props) => {
                 />
               </ListItem>
               <Divider variant="inset" component="li" />
-            </>
+            </div>
           ))
         )}
       </List>

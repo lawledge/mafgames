@@ -1,4 +1,5 @@
 export const SET_CURRENT_GAME = "SET_CURRENT_GAME";
 export const PUT_GAME_LIST = "PUT_GAME_LIST";
 export const LOAD_GAME_LIST = "LOAD_GAME_LIST";
+export const SET_FAVORITE_GAME = "SET_FAVORITE_GAME";
 // export const STATS_COMPARE = "STATS_COMPARE";
