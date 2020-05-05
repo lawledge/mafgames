@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     paper: {
       textAlign: "center",
-      width: "100vh",
+      width: "80vh",
       height: "60vh",
       alignSelf: "flex-end",
       // justifyContent: "center",

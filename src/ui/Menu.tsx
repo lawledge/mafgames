@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Footer = () => {
+export const Menu = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -37,7 +37,7 @@ export const Footer = () => {
           icon={<HomeIcon />}
         />
       </Link>
-      <Link to="/favorites">
+      <Link to="/favorite">
         <BottomNavigationAction
           className={classes.action}
           label="Favorites"

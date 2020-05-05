@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Box,
@@ -15,6 +15,7 @@ import { PlayerContainer } from "../player/PlayerContainer";
 import { setGame, setFav } from "./gameActionCreator";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Replay from "@material-ui/icons/Replay";
+import { loadGames } from "../game/gameActionCreator";
 
 interface RootState {
   game: GameResponse;
@@ -24,11 +25,11 @@ interface RootState {
 // interface CurrentIsSet {
 //   currentIsSet
 // }
-
+// selectIsChanged: () => void;
 interface Props {
-  selectIsChanged: () => void;
   loadedGameList: GameResponse;
   currentIsSet?: GameFromServer;
+  // favIsSet: (curgame: number, fn: (check: boolean) => void) => void;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -53,13 +54,13 @@ export const Game: React.FC<Props> = (props) => {
   // прокинуть через пропсы
   const state = useSelector(checkState);
   const dispatch = useDispatch();
-
-  console.log(state);
   // const counter = useSelector((state) => state.game);
   const classes = useStyles();
 
   const inputLabel = React.useRef<HTMLLabelElement>(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
+
+  const [favInStore, setFavInStore] = React.useState(Boolean);
 
   const changeLabelWidth = () => {
     setLabelWidth(inputLabel.current!.offsetWidth);
@@ -72,36 +73,42 @@ export const Game: React.FC<Props> = (props) => {
       );
       // setCurrentGame
       dispatch(setGame(clickedGame[0]));
-      console.log(clickedGame[0]);
     }
   };
 
-  // const useLocalState = (localItem: string) => {
-  //   const [local, setState] = useState(localStorage.getItem(localItem));
-  //   const setLoc = (newItem: string) => {
-  //     localStorage.setItem(localItem, newItem);
-  //     setState(newItem);
-  //   };
-  //   return [local, setLoc] as const;
+  // const handleClick = () => {
+  //   if (props.currentIsSet !== undefined) {
+  //     props.favIsSet(props.currentIsSet.id, (check) => {
+  //       console.log(check);
+  //       return setFavInStore(check);
+  //     });
+  //   }
   // };
 
-  // go id
-
-  // const [fav, setFav] = useLocalState(
-  //   props.currentIsSet ? props.currentIsSet.id.toString() : "undefined"
-  // );
+  useEffect(() => {
+    dispatch(loadGames());
+  }, []);
   return (
     <Box m={2}>
+      {console.log(favInStore)}
       <Grid container className={classes.container}>
-        {console.log(props.currentIsSet)}
         {props.currentIsSet ? (
-          // go all game info
-
           <Fab
-            onClick={() => dispatch(setFav(props.currentIsSet))}
+            onClick={() => {
+              dispatch(setFav(props.currentIsSet));
+              setFavInStore(true);
+              // handleClick();
+              // favInStore === false
+              //   ? dispatch(setFav(props.currentIsSet))
+              //   : alert("You've already added this game!");
+              // props.favIsSet(
+              //   props?.currentIsSet?.id ? props.currentIsSet.id : 0
+              // );
+            }}
+            disabled={favInStore}
             size="small"
             color="primary"
-            aria-label="favorites"
+            aria-label="favorite"
             className={classes.fab}
           >
             <FavoriteIcon />
@@ -117,11 +124,15 @@ export const Game: React.FC<Props> = (props) => {
             className={classes.formControl}
           >
             <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
-              Choose game!
+              Choose a game!
             </InputLabel>
             <Select
               //   value={props.game.id}
               onChange={handleChange}
+              onClick={() => {
+                favInStore === true ? setFavInStore(false) : console.log("cl");
+              }}
+              //  if (favInStore === true) setFavInStore(false);
               // onChange={props.selectIsChanged}
               labelWidth={labelWidth}
               inputProps={{
@@ -130,8 +141,6 @@ export const Game: React.FC<Props> = (props) => {
               }}
               onOpen={changeLabelWidth}
             >
-              {/* {console.log(typeof props.loadedGameList.games)} */}
-
               {props.loadedGameList.games.length === 0 ||
               props.loadedGameList.games.length === null ? (
                 <MenuItem value="none">
@@ -145,12 +154,10 @@ export const Game: React.FC<Props> = (props) => {
                 ))
               )}
             </Select>
-
-            {/* флексами лого и кнопку */}
           </FormControl>
         </Grid>
         <Fab
-          onClick={() => console.log("2")}
+          onClick={() => dispatch(loadGames())}
           size="small"
           color="primary"
           aria-label="reload"

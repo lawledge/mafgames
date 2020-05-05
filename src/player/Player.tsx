@@ -40,7 +40,7 @@ export const Player: React.FC<Props> = (props) => {
                     <PersonIcon />
                   </Avatar>
                 </ListItemAvatar>
-                {console.log(userMapping)}
+
                 <ListItemText
                   primary={userMapping[id]}
                   secondary={`id: ${id === "-1" ? "скрыт" : id}`}

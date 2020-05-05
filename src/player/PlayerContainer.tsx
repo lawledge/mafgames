@@ -11,16 +11,10 @@ interface RootState {
 
 const checkState = (state: RootState) => state;
 
-// import axios from "axios";
-// конфликт из-за отсутствия провайдера
-// import { connect } from "react-redux";
-// import { setGame } from "../store/game/actions";
-// сюда надо импортнуть ф-ю из PlayerContainer, которую повесить потом на OnChange
-
 export const PlayerContainer: React.FC = () => {
   const state = useSelector(checkState);
-  console.log(state);
-  console.log(state.curGame.currentGame.id);
+
+  // if curgame set on store
 
   return (
     <>

@@ -1,42 +1,38 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Game } from "./Game";
-import { loadGames } from "./gameActionCreator";
-import { GameResponse } from "./gameInterface";
-import { CurrentGame } from "./gameInterface";
+import { GameResponse, GameFromServer, CurrentGame } from "./gameInterface";
 
 interface RootState {
   game: GameResponse;
   player: object;
   curGame: CurrentGame;
+  fav: {
+    favorite: GameFromServer[];
+  };
 }
 
 const checkDefaultState = (state: RootState) => state;
 
-// const handler = useCallback(() => {
-//   dispatch(setGame());
-// }, []);
-
 export const GameContainer: React.FC = () => {
-  const dispatch = useDispatch();
-
-  const selectIsChanged = () => {};
   const state = useSelector(checkDefaultState);
-  useEffect(() => {
-    console.log(state);
-    dispatch(loadGames());
-  }, []);
+
+  // const checkFavIsSet = (curgame: number, fn: (check: boolean) => void) => {
+  //   state.fav.favorite.filter((game) => {
+  //     fn(curgame == game.id ? true : false);
+  //   });
+  // };
 
   return (
     <>
       <Game
-        selectIsChanged={selectIsChanged}
         loadedGameList={state.game}
         currentIsSet={
           state.curGame.currentGame.start
             ? state.curGame.currentGame
             : undefined
         }
+        // favIsSet={checkFavIsSet}
       />
     </>
   );
