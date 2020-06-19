@@ -21,9 +21,6 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "80vh",
       height: "60vh",
       alignSelf: "flex-end",
-      // justifyContent: "center",
-
-      // fontFamily: "Arial",
     },
     textgroup: {
       padding: "10px 20px 20px 20px",

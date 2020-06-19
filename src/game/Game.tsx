@@ -22,10 +22,6 @@ interface RootState {
   player: object;
 }
 
-// interface CurrentIsSet {
-//   currentIsSet
-// }
-// selectIsChanged: () => void;
 interface Props {
   loadedGameList: GameResponse;
   currentIsSet?: GameFromServer;
@@ -51,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const Game: React.FC<Props> = (props) => {
   const checkState = (state: RootState) => state;
-  // прокинуть через пропсы
   const state = useSelector(checkState);
   const dispatch = useDispatch();
   // const counter = useSelector((state) => state.game);
@@ -71,19 +66,10 @@ export const Game: React.FC<Props> = (props) => {
       const clickedGame = state.game.games.filter(
         ({ id }) => id === e.target.value
       );
-      // setCurrentGame
+
       dispatch(setGame(clickedGame[0]));
     }
   };
-
-  // const handleClick = () => {
-  //   if (props.currentIsSet !== undefined) {
-  //     props.favIsSet(props.currentIsSet.id, (check) => {
-  //       console.log(check);
-  //       return setFavInStore(check);
-  //     });
-  //   }
-  // };
 
   useEffect(() => {
     dispatch(loadGames());
@@ -97,13 +83,6 @@ export const Game: React.FC<Props> = (props) => {
             onClick={() => {
               dispatch(setFav(props.currentIsSet));
               setFavInStore(true);
-              // handleClick();
-              // favInStore === false
-              //   ? dispatch(setFav(props.currentIsSet))
-              //   : alert("You've already added this game!");
-              // props.favIsSet(
-              //   props?.currentIsSet?.id ? props.currentIsSet.id : 0
-              // );
             }}
             disabled={favInStore}
             size="small"
@@ -167,7 +146,6 @@ export const Game: React.FC<Props> = (props) => {
         </Fab>
       </Grid>
       <Grid item xs={12}>
-        {/* <ExtraButton /> */}
         <PlayerContainer />
       </Grid>
     </Box>

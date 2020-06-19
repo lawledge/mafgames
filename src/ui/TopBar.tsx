@@ -24,7 +24,6 @@ export const TopBar: React.FC = () => {
     <>
       <AppBar position="static">
         <Toolbar>
-          {/* флексами лого и кнопку */}
           <Typography variant="h6" className={classes.title}>
             mafgames
           </Typography>
