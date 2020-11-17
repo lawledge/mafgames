@@ -1,3 +1,6 @@
+Приложение для вывода активных игр и игроков, которые находятся на сайте Mafia Online. 
+Написан на TypeScript, React + Redux + Redux Saga. Так же приложение может сохранять избранные игры с помощью Redux + Redux Persist.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
